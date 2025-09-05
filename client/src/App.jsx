@@ -3,7 +3,7 @@ import CallRoom from './components/CallRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('demo');
-  const [serverUrl, setServerUrl] = useState('http://localhost:6000');
+  const [serverUrl, setServerUrl] = useState('http://103.194.228.174:5500');
 
   return (
     <div style={{ padding: 16, fontFamily: 'sans-serif' }}>
