@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"vite\"",
+    "dev": "concurrently \"npm run dev:server\" \"vite --host 0.0.0.0\""
     "dev:server": "npm run dev --prefix ../server",
     "build": "vite build",
     "preview": "vite preview --port 5173"

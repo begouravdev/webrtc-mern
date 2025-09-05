@@ -58,4 +58,6 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 6000;
-httpServer.listen(PORT, () => console.log(`Signaling server running on :${PORT}`));
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`Signaling server running on http://0.0.0.0:${PORT}`);
+});
