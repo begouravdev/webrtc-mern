@@ -20,7 +20,7 @@ export default function CallRoom({ roomId, serverUrl }) {
   ]
 
   useEffect(() => {
-    socketRef.current = io('http://103.194.228.174:4000', { transports: ['websocket'] });
+    socketRef.current = io('http://103.194.228.174:6000', { transports: ['websocket'] });
 
     socketRef.current.on('connect', () => setStatus('Connected to signaling'));
     socketRef.current.on('peer-joined', async ({ socketId }) => {
