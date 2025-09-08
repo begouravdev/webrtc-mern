@@ -70,13 +70,15 @@ export default function CallRoom({ roomId, serverUrl }) {
       }
     };
 
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    console.log('Local stream obtained');
-    if (localVideoRef.current) {
-      console.log('Setting local video srcObject');
-      localVideoRef.current.srcObject = stream;
-    }
-    stream.getTracks().forEach((track) => pcRef.current.addTrack(track, stream));
+    console.log(navigator.mediaDevices);
+
+    // const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    // console.log('Local stream obtained');
+    // if (localVideoRef.current) {
+    //   console.log('Setting local video srcObject');
+    //   localVideoRef.current.srcObject = stream;
+    // }
+    // stream.getTracks().forEach((track) => pcRef.current.addTrack(track, stream));
   }
 
   async function join() {
