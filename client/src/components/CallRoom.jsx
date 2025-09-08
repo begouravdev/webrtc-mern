@@ -55,19 +55,25 @@ export default function CallRoom({ roomId, serverUrl }) {
   async function initPeer() {
     pcRef.current = new RTCPeerConnection({ iceServers });
     pcRef.current.onicecandidate = (event) => {
+      console.log('ICE candidate:', event.candidate);
       if (event.candidate) {
+        console.log('Sending ICE candidate');
         // send ICE candidates via signaling
         socketRef.current.emit('signal', { roomId, to: 'broadcast', data: { candidate: event.candidate } });
       }
     };
     pcRef.current.ontrack = (event) => {
+      console.log('Remote track received:', event.streams);
       if (remoteVideoRef.current) {
+        console.log('Setting remote video srcObject');
         remoteVideoRef.current.srcObject = event.streams[0];
       }
     };
 
     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    console.log('Local stream obtained');
     if (localVideoRef.current) {
+      console.log('Setting local video srcObject');
       localVideoRef.current.srcObject = stream;
     }
     stream.getTracks().forEach((track) => pcRef.current.addTrack(track, stream));
@@ -77,6 +83,7 @@ export default function CallRoom({ roomId, serverUrl }) {
     if (joined) return;
     setStatus('Joining…');
     await initPeer();
+    console.log("Joining room:", roomId);
     socketRef.current.emit('join', { roomId });
     setJoined(true);
     setStatus('Joined');
